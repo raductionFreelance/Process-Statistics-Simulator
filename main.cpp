@@ -18,13 +18,14 @@ private: //це для того, щоб не можна було отримат�
     double cpuUsage;
     long memoryUsage;
 public:
-    Process(int pid = 0, string name = "", double cpuUsage = 0.0, long memoryUsage = 0){ //необхідний для простоти задання значень класу, припускаю, що конструктор і деструктор спрацьовують частіше, ніж очікувалось, оскільки обʼєкт ініціалізовується одразу під час додавання у вектор і видаляються як окремі елементи одразу ж після цього
+    Process(int pid = 1, string name = "hello", double cpuUsage = 0.1, long memoryUsage = 1){ //необхідний для простоти задання значень класу, припускаю, що конструктор і деструктор спрацьовують частіше, ніж очікувалось, оскільки обʼєкт ініціалізовується одразу під час додавання у вектор і видаляються як окремі елементи одразу ж після цього
         if(pid > 0 && cpuUsage > 0 && cpuUsage <= 100 && memoryUsage > 0 && !name.empty()){
+            this->pid = pid;
             this->name = name;
             this->cpuUsage = cpuUsage;
             this->memoryUsage = memoryUsage;
             
-            cout << "Process started" << endl;
+            //cout << "Process started" << endl;
         }else{
             throw invalid_argument("Some information is not correct. Please, start program again with correct values");
         }
@@ -53,7 +54,7 @@ public:
     }
     
     ~Process(){ //викликається зазвичай в кінці класу
-        cout << "Process finished" << endl;
+        //cout << "Process finished" << endl;
     }
 };
 /*
@@ -188,11 +189,13 @@ void inspectC(Process* process);
  */
 
 int main() {
+    /*
     try{
         Process p = Process(-23, "", 346, -345);
     }catch(const invalid_argument& e){
         cerr << "Error: " << e.what() << std::endl;
     }
+    */
     
     vector<Process> processes;
     processes.push_back(Process(1236, "chrome.exe", 14.556, 812));
